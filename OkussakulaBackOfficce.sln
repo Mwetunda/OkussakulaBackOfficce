@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Okussakula.UI", "Okussakula.UI\Okussakula.UI.csproj", "{83E7F4DD-3185-438F-9A9E-0B1CA3A38644}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Okussakula.Model", "Okussakula.Model\Okussakula.Model.csproj", "{79FDEE9C-032B-4FB4-BD27-F5B0BF05E952}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Okussakula.Service", "Okussakula.Service\Okussakula.Service.csproj", "{E3ACA10D-2603-4C6E-B019-35D12E856476}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83E7F4DD-3185-438F-9A9E-0B1CA3A38644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83E7F4DD-3185-438F-9A9E-0B1CA3A38644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83E7F4DD-3185-438F-9A9E-0B1CA3A38644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83E7F4DD-3185-438F-9A9E-0B1CA3A38644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79FDEE9C-032B-4FB4-BD27-F5B0BF05E952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79FDEE9C-032B-4FB4-BD27-F5B0BF05E952}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79FDEE9C-032B-4FB4-BD27-F5B0BF05E952}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79FDEE9C-032B-4FB4-BD27-F5B0BF05E952}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3ACA10D-2603-4C6E-B019-35D12E856476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3ACA10D-2603-4C6E-B019-35D12E856476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3ACA10D-2603-4C6E-B019-35D12E856476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3ACA10D-2603-4C6E-B019-35D12E856476}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
