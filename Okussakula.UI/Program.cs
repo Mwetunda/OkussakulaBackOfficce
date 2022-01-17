@@ -1,4 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
+using Okussakula.Model.Interface;
+using Okussakula.Service.Services;
 using System;
 using System.Windows.Forms;
 
@@ -31,8 +33,7 @@ namespace Okussakula.UI
 
             services.AddSingleton<Form1>();
 
-            //services.AddSingleton<IEmpRepository, EmprRepository>();
-            //services.AddSingleton<ISisRepository, SisRepository>();
+            services.AddScoped<ISpeciality, SpecialityServices>();
         }
     }
 }

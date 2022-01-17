@@ -10,4 +10,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Okussakula.Model\Okussakula.Model.csproj" />
+    <ProjectReference Include="..\Okussakula.Service\Okussakula.Service.csproj" />
+  </ItemGroup>
+
 </Project>

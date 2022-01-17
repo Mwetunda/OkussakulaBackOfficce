@@ -1,7 +1,11 @@
-﻿using Okussakula.Model;
+﻿using Newtonsoft.Json;
+using Okussakula.Model;
+using Okussakula.Model.DTO;
 using Okussakula.Model.Interface;
 using System;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Okussakula.Service.Services
 {
@@ -13,18 +17,38 @@ namespace Okussakula.Service.Services
 
         }
 
-        public Response List()
+        public async Task<Response> List()
         {
-            var resposta = new Response();
+            var response = new Response();
 
             try
             {
-               
-                return resposta.Good("Lista de especialidades");
+                var uri = "http://173.249.48.24:8027/api/Speciality/Listar";
+
+                var cliente = new HttpClient();
+
+                var get = await cliente.GetAsync(uri);
+
+                var result = new Response();
+
+                if (get.IsSuccessStatusCode)
+                {
+                    var ProdutoJsonString = await get.Content.ReadAsStringAsync();
+
+                    result = JsonConvert.DeserializeObject<Response> (ProdutoJsonString);
+
+
+                    return response.Good(""+result.Mensagem, result.Objeto);
+
+                }
+                else
+                {
+                    return response.Bad(""+result.Mensagem);
+                }
             }
             catch(Exception e)
             {
-              return  resposta.Bad("Erro ao gerar lista " + e);
+              return  response.Bad("Erro ao gerar lista " + e);
             }
         }
     }
