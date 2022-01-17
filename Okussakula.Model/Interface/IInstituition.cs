@@ -1,5 +1,4 @@
-﻿using Okussakula.Model;
-using Okussakula.Model.DTO;
+﻿using Okussakula.Model.DTO;
 using System.Collections.Generic;
 
 namespace Okussakula.Model.Interface
