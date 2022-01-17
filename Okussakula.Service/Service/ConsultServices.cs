@@ -38,17 +38,8 @@ namespace Okussakula.Service.Services
 
             try
             {
-                var lista = _context.Consults
-                    .Include(x => x.User)
-                    .Include(x => x.ConsultHorario)
-                    .ThenInclude(x => x.CronogramConsult)
-                    .ThenInclude(x => x.InstituitionSpeciality)
-                    .ThenInclude(x => x.Speciality)
-                    .AsNoTracking()
-                    .Where(x => x.ConsultHorario.CronogramConsult.InstituitionSpeciality.InstituitionId == instituitionId)
-                    .OrderBy(x => x.DataInsert);
-
-                return resposta.Good("Lista de Consultas", lista);
+               
+                return resposta.Good("Lista de Consultas");
             }
             catch (Exception e)
             {
@@ -62,16 +53,9 @@ namespace Okussakula.Service.Services
 
             try
             {
-                var lista = _context.Consults
-                    .Include(x => x.User)
-                    .Include(x => x.ConsultHorario)
-                    .ThenInclude(x => x.CronogramConsult)
-                    .ThenInclude(x => x.InstituitionSpeciality)
-                    .AsNoTracking()
-                    .Where(x => x.ConsultHorario.CronogramConsult.InstituitionSpeciality.InstituitionId == instituitionId && x.ConsultHorario.CronogramConsult.InstituitionSpeciality.SpecialityId == specialityId)
-                    .OrderBy(x => x.DataInsert);
+               
 
-                return resposta.Good("Lista de Consultas", lista);
+                return resposta.Good("Lista de Consultas");
             }
             catch (Exception e)
             {
@@ -85,16 +69,8 @@ namespace Okussakula.Service.Services
 
             try
             {
-                var lista = _context.Consults
-                    .Include(x => x.ConsultHorario)
-                    .ThenInclude(x => x.CronogramConsult)
-                    .ThenInclude(x => x.InstituitionSpeciality)
-                    .ThenInclude(x => x.Speciality)
-                    .AsNoTracking()
-                    .Where(x => x.UserId == userId)
-                    .OrderBy(x => x.DataInsert);
-
-                return resposta.Good("Lista de Consultas", lista);
+                
+                return resposta.Good("Lista de Consultas");
             }
             catch (Exception e)
             {

@@ -4,7 +4,6 @@ namespace Okussakula.Model.Interface
 {
     public interface IExam
     {
-        Response Insert(ExamCreatDTO dto);
-        
+        Response List();
     }
 }

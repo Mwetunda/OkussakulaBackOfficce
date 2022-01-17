@@ -1,40 +1,26 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Okussakula.Model;
-using Okussakula.Model.Data;
-using Okussakula.Service.Interface;
+﻿using Okussakula.Model;
+using Okussakula.Model.DTO;
+using Okussakula.Model.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Okussakula.Service.Services
 {
     public class InstituitionServices: IInstituition
     {
-        private DataContext _context;
-        private readonly ILogger<InstituitionServices> _logger;
-
-        public InstituitionServices(DataContext context, ILogger<InstituitionServices> logger)
+        
+        public InstituitionServices()
         {
-            _context = context;
-            _logger = logger;
+
         }
 
-        public Response Insert(Instituition entity)
+        public Response Insert(InstituitionCreatDTO entity)
         {
             var resposta = new Response();
 
             try
             {
-                entity.DateInsert = DateTime.Now.Date;
-                entity.DateUpdate = DateTime.Now.Date;
-                entity.State = true;
-
-                _context.Instituitions.Add(entity);
-                _context.SaveChanges();
-
                 return resposta.Good("Instituição registada com sucesso", entity);
 
             }
@@ -43,20 +29,12 @@ namespace Okussakula.Service.Services
                 return resposta.Bad("Erro ao registar instituição " + e);
             }
         }
-        public Response InsertSpeciality(List<InstituitionSpeciality> entity)
+        public Response InsertSpeciality(List<InstituitionSpecialityCreatDTO> entity)
         {
             var resposta = new Response();
 
             try
             {
-                foreach(var item in entity)
-                {
-                    item.State = true;
-                }
-
-                _context.InstituitionSpecialities.AddRange(entity);
-                _context.SaveChanges();
-
                 return resposta.Good("Especialidades adicionadas com sucesso", entity);
 
             }
@@ -65,20 +43,13 @@ namespace Okussakula.Service.Services
                 return resposta.Bad("Erro ao adicionar especialidades " + e);
             }
         }
-        public Response InsertExam(List<InstituitionExam> entity)
+        public Response InsertExam(List<InstituitionExamCreatDTO> entity)
         {
             var resposta = new Response();
 
             try
             {
-                foreach(var item in entity)
-                {
-                    item.State = true;
-                }
-
-                _context.InstituitionExams.AddRange(entity);
-                _context.SaveChanges();
-
+                
                 return resposta.Good("Exames adicionados com sucesso", entity);
 
             }
@@ -94,28 +65,8 @@ namespace Okussakula.Service.Services
 
             try
             {
-                var Lista = new List<Instituition>();
-
-                var lista = _context.Instituitions
-                    .Include(x => x.InstituitionSpeciality).ThenInclude(x => x.Speciality)
-                    .AsNoTracking();
-
-                foreach(var item in lista)
-                {
-                    foreach (var item2 in item.InstituitionSpeciality)
-                    {
-                        if(item2.SpecialityId == id)
-                        {
-                            item.InstituitionSpeciality.Clear();
-                            item.InstituitionSpeciality.Add(item2);
-                            Lista.Add(item);
-                            goto Avancar;
-                        }
-                    }
-                    Avancar:;
-                }
-
-                return resposta.Good("Lista de instituições", Lista);
+               
+                return resposta.Good("Lista de instituições");
             }
             catch (Exception e)
             {
@@ -129,13 +80,8 @@ namespace Okussakula.Service.Services
 
             try
             {
-                var lista = _context.InstituitionSpecialities
-                    .Include(x => x.Speciality)
-                    .AsNoTracking()
-                    .Where(x => x.InstituitionId == id)
-                    .OrderBy(x => x.Speciality.Designation);
 
-                return resposta.Good("Lista de especialidades", lista);
+                return resposta.Good("Lista de especialidades");
             }
             catch (Exception e)
             {
@@ -149,13 +95,8 @@ namespace Okussakula.Service.Services
 
             try
             {
-                var lista = _context.InstituitionExams
-                    .Include(x => x.Exam)
-                    .AsNoTracking()
-                    .Where(x => x.InstituitionId == id)
-                    .OrderBy(x => x.Exam.Designation);
-
-                return resposta.Good("Lista de exames", lista);
+               
+                return resposta.Good("Lista de exames");
             }
             catch (Exception e)
             {

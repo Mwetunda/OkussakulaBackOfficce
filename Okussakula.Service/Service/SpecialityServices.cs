@@ -1,13 +1,14 @@
 ﻿using Okussakula.Model;
 using Okussakula.Model.Interface;
 using System;
+using System.Linq;
 
 namespace Okussakula.Service.Services
 {
-    public class ExamServices : IExam
+    public class SpecialityServices : ISpeciality
     {
-        
-        public ExamServices()
+       
+        public SpecialityServices()
         {
 
         }
@@ -19,13 +20,11 @@ namespace Okussakula.Service.Services
             try
             {
                
-
-                return resposta.Good("Exame registado com sucesso");
-
+                return resposta.Good("Lista de especialidades");
             }
-            catch (Exception e)
+            catch(Exception e)
             {
-                return resposta.Bad("Erro ao registar exame "+e);
+              return  resposta.Bad("Erro ao gerar lista " + e);
             }
         }
     }
