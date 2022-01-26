@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Okussakula.Model.DTO;
 using Okussakula.Model.Interface;
 using Okussakula.Service.Services;
+using Okussakula.UI.User;
 using Refit;
 using System;
 using System.Windows.Forms;
@@ -34,6 +35,7 @@ namespace Okussakula.UI
         {
 
             services.AddSingleton<Form1>();
+            services.AddSingleton<FormLogin>();
 
             //services.AddScoped<AdministradorServices>();
 

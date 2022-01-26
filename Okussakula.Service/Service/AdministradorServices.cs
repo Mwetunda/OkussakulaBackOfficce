@@ -8,28 +8,26 @@ using System.Threading.Tasks;
 
 namespace Okussakula.Service.Services
 {
-    public class AdministradorServices:IAdministrador
+    public class AdministradorServices
     {
-        public readonly IAdministrador _administrador;
-        public AdministradorServices(IAdministrador administrador)
+        public AdministradorServices()
         {
-            _administrador = administrador;
+            //_administrador.GetType();
         }
 
-        public Task<Response> Insert([FromBody] AdministradorCreatDTO dto)
-        {
-            return _administrador.Insert(dto);
-        }
+        //public Task<Response> Insert([FromBody] AdministradorCreatDTO dto)
+        //{
+        //    return _administrador.Insert(dto);
+        //}
 
-        public Task<Response> Profile()
-        {
-            return _administrador.Profile();
-        }
+        //public Task<Response> Profile()
+        //{
+        //    return _administrador.Profile();
+        //}
 
-        public Task<Response> Login([FromBody] AdministradorLoginDTO dto)
+        public Task<Response> Login(AdministradorLoginDTO dto, IAdministrador administrador)
         {
-            return _administrador.Login(dto);
+            return administrador.Login(dto);
         }
-
     }
 }
