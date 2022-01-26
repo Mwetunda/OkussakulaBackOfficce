@@ -1,41 +1,23 @@
-﻿using Okussakula.Model.Interface;
+﻿using Okussakula.Service.Services;
+using Okussakula.UI.User;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Okussakula.UI
 {
     public partial class Form1 : Form
     {
-        private readonly ISpeciality _speciality;
-
-        public Form1(ISpeciality speciality)
+        public Form1()
         {
-            _speciality = speciality;
 
             InitializeComponent();
-
-            GetAll();
         }
 
-        private void GetAll()
+        private void label1_Click(object sender, EventArgs e)
         {
-            var result = _speciality.List();
-
-            if(result.Result.Exito)
-            {
-
-            }
-            else
-            {
-
-            }
+            FormLogin Login = new FormLogin();
+            Login.Show();
+            this.Hide();
         }
     }
 }

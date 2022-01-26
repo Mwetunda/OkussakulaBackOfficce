@@ -1,12 +1,20 @@
 ﻿using Okussakula.Model.DTO;
+using Refit;
+using System.Threading.Tasks;
 
 namespace Okussakula.Model.Interface
 {
     public interface IAdministrador
     {
-        Response Insert(AdministradorCreatDTO entity);
-        Response GetByID(long id);
-        Response Login(AdministradorLoginDTO entity, string secret);
-        
+
+        [Post("/Administrador/Registar")]
+        Task<Response> Insert(AdministradorCreatDTO administrador);
+
+        [Get("/Administrador/Perfil")]
+        Task<Response> Profile();
+
+        [Post("/Administrador/Login")]
+        Task<Response> Login(AdministradorLoginDTO administrador);
+
     }
 }

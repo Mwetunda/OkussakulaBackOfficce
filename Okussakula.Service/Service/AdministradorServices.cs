@@ -1,67 +1,35 @@
-﻿using Okussakula.Model;
+﻿using Microsoft.AspNetCore.Mvc;
+using Okussakula.Model;
 using Okussakula.Model.DTO;
 using Okussakula.Model.Interface;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
-namespace Okussakula.Service.Service
+namespace Okussakula.Service.Services
 {
     public class AdministradorServices:IAdministrador
     {
-       
-        public AdministradorServices()
+        public readonly IAdministrador _administrador;
+        public AdministradorServices(IAdministrador administrador)
         {
-
+            _administrador = administrador;
         }
 
-        
-        public Response Insert(AdministradorCreatDTO entity)
+        public Task<Response> Insert([FromBody] AdministradorCreatDTO dto)
         {
-            var resposta = new Response();
-
-            try
-            {
-
-                return resposta.Good("Administrador registado com sucesso", entity);
-
-            }
-            catch (Exception e)
-            {
-                return resposta.Bad("Erro ao registar administrador "+e);
-            }
+            return _administrador.Insert(dto);
         }
 
-        public Response Login(AdministradorLoginDTO entity, string secret)
+        public Task<Response> Profile()
         {
-            var res = new Response();
-
-            try
-            {
-               
-
-                return res.Good("Sucesso", entity);
-            }
-            catch (Exception e)
-            {
-
-                return res.Bad("Erro ao efectuar login "+e);
-            }
+            return _administrador.Profile();
         }
 
-        public Response GetByID(long id)
+        public Task<Response> Login([FromBody] AdministradorLoginDTO dto)
         {
-            var res = new Response();
-
-            try
-            {
-                
-                return res.Bad("Erro ao pesquizar administrador");
-            }
-            catch (Exception e)
-            {
-                
-                return res.Bad("Erro ao pesquizar administrador " + e);
-            }
+            return _administrador.Login(dto);
         }
+
     }
 }

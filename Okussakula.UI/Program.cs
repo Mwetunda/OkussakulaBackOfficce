@@ -1,6 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
+using Okussakula.Model.DTO;
 using Okussakula.Model.Interface;
 using Okussakula.Service.Services;
+using Refit;
 using System;
 using System.Windows.Forms;
 
@@ -33,7 +35,18 @@ namespace Okussakula.UI
 
             services.AddSingleton<Form1>();
 
-            services.AddScoped<ISpeciality, SpecialityServices>();
+            //services.AddScoped<AdministradorServices>();
+
+            services.AddRefitClient<ISpeciality>().ConfigureHttpClient(c =>
+            {
+                c.BaseAddress = new Uri("http://173.249.48.24:8027/api");
+            });
+            services.AddRefitClient<IAdministrador>().ConfigureHttpClient(c =>
+            {
+                c.BaseAddress = new Uri("http://173.249.48.24:8027/api");
+            });
+
+            //services.AddScoped<ISpeciality, SpecialityServices>();
         }
     }
 }
