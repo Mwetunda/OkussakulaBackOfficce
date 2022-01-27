@@ -7,17 +7,17 @@ namespace Okussakula.UI
 {
     public partial class Form1 : Form
     {
-        private readonly ISpeciality _speciality;
+        //private readonly ISpeciality _speciality;
         public Form1(ISpeciality speciality)
         {
-           _speciality = speciality;
+           //_speciality = speciality;
 
             InitializeComponent();
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-            FormLogin Login = new FormLogin(_speciality);
+            FormLogin Login = new FormLogin();
             Login.Show();
             this.Hide();
         }
