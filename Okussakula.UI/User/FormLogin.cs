@@ -1,42 +1,36 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Okussakula.Model;
-using Okussakula.Model.DTO;
+﻿using Okussakula.Model.DTO;
 using Okussakula.Model.Interface;
-using Okussakula.Service.Services;
 using System;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Okussakula.UI.User
 {
     public partial class FormLogin : Form
     {
-        private readonly IAdministrador _administrador;
+        private readonly ISpeciality _speciality;
+
         AdministradorLoginDTO administradorLoginDTO;
-        AdministradorServices administradorServices;
 
-        public FormLogin(IAdministrador administrador)
+        public FormLogin(ISpeciality speciality)
         {
-            _administrador = administrador;
+            _speciality = speciality;
 
-            administradorLoginDTO = new AdministradorLoginDTO();
-            administradorServices = new AdministradorServices();
+            //administradorLoginDTO = new AdministradorLoginDTO();
             
             InitializeComponent();
+
+            
         }
 
-        private void Logar()
+        private void GetAll()
         {
 
-            administradorLoginDTO.Senha = TxtPassword.Text;
-            administradorLoginDTO.Telephone = TxtPhone.Text;
-
-            var result = administradorServices.Login(administradorLoginDTO, _administrador);
+            var result = _speciality.List();
         }
 
         private void BtnLogar_Click(object sender, EventArgs e)
         {
-            Logar();
+            GetAll();
         }
     }
 }

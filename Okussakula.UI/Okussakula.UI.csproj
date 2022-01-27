@@ -9,8 +9,6 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
-    <PackageReference Include="Refit" Version="5.2.4" />
-    <PackageReference Include="Refit.HttpClientFactory" Version="5.2.4" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,27 +1,47 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Newtonsoft.Json;
 using Okussakula.Model;
-using Okussakula.Model.DTO;
 using Okussakula.Model.Interface;
+using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Okussakula.Service.Services
 {
-    public class SpecialityServices
+    public class SpecialityServices:ISpeciality
     {
-        private readonly ISpeciality _speciality;
-        public SpecialityServices(ISpeciality speciality)
+        public async Task<Response> List()
         {
-            _speciality = speciality;
-        }
+            var response = new Response();
 
-        public Task<Response> List()
-        {
-            return _speciality.List();
-        }
+            try
+            {
 
-        public Task<Response> Insert([FromBody] SpecialityCreatDTO dto)
-        {
-            return _speciality.Insert(dto);
+                var uri = "http://173.249.48.24:8027/api/Speciality/Listar";
+
+                var cliente = new HttpClient();
+
+                var get = await cliente.GetAsync(uri);
+
+                var result = new Response();
+
+                if (get.IsSuccessStatusCode)
+                {
+                    var ProdutoJsonString = await get.Content.ReadAsStringAsync();
+
+                    result = JsonConvert.DeserializeObject<Response>(ProdutoJsonString);
+
+                    return response.Good("" + result.Mensagem, result.Objeto);
+
+                }
+                else
+                {
+                    return response.Bad(get.StatusCode+" "+ result.Mensagem);
+                }
+            }
+            catch (Exception e)
+            {
+                return response.Bad("Erro ao gerar lista " + e);
+            }
         }
     }
 }

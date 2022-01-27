@@ -10,9 +10,10 @@ namespace Okussakula.Service.Services
 {
     public class AdministradorServices
     {
-        public AdministradorServices()
+        private readonly IAdministrador _administrador;
+        public AdministradorServices(IAdministrador administrador)
         {
-            //_administrador.GetType();
+            _administrador = administrador;
         }
 
         //public Task<Response> Insert([FromBody] AdministradorCreatDTO dto)
@@ -25,9 +26,9 @@ namespace Okussakula.Service.Services
         //    return _administrador.Profile();
         //}
 
-        public Task<Response> Login(AdministradorLoginDTO dto, IAdministrador administrador)
+        public Task<Response> Login(AdministradorLoginDTO dto)
         {
-            return administrador.Login(dto);
+            return _administrador.Login(dto);
         }
     }
 }
