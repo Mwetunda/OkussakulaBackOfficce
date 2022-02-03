@@ -47,7 +47,7 @@ namespace Okussakula.UI
             //});
 
             
-            services.AddScoped<ISpeciality, SpecialityServices>();
+            services.AddScoped<IAdministrador, AdministradorServices>();
         }
     }
 }

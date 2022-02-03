@@ -7,10 +7,10 @@ namespace Okussakula.Model.Interface
     {
 
 
-        Task<Response> Insert(AdministradorCreatDTO administrador);
+        //Task<Response> Insert(AdministradorCreatDTO administrador);
 
 
-        Task<Response> Profile();
+        //Task<Response> Profile();
 
 
         Task<Response> Login(AdministradorLoginDTO administrador);

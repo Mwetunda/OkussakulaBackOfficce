@@ -12,19 +12,16 @@ namespace Okussakula.UI.User
 {
     public partial class FormLogin : Form
     {
-        //private readonly ISpeciality _speciality;
+        private readonly IAdministrador _administrador;
 
         AdministradorLoginDTO administradorLoginDTO;
 
-        public FormLogin()
+        public FormLogin(IAdministrador administrador)
         {
-            //_speciality = speciality;
-
-            administradorLoginDTO = new AdministradorLoginDTO();
+            _administrador = administrador;
             
             InitializeComponent();
 
-            
         }
 
         public async Task<Response> GetAll()
@@ -64,54 +61,23 @@ namespace Okussakula.UI.User
             }
         }
 
-        public async Task<Response> Logar()
+        private void Logar()
         {
-            var response = new Response();
+            administradorLoginDTO = new AdministradorLoginDTO();
 
-            try
-            {
-                var uri = "http://173.249.48.24:8027/api/Administrador/Login";
+            administradorLoginDTO.Telephone = TxtPhone.Text;
+            administradorLoginDTO.Senha = TxtPassword.Text;
 
-                administradorLoginDTO.Telephone = TxtPhone.Text;
-                administradorLoginDTO.Senha = TxtPassword.Text;
+            var result = _administrador.Login(administradorLoginDTO);
 
-                using (var cliente = new HttpClient())
-                {
-
-                    var administrador = JsonConvert.SerializeObject(administradorLoginDTO);
-
-                    var content = new StringContent(administrador, Encoding.UTF8, "application/json");
-
-                    var result = await cliente.PostAsync(uri, content);
-
-
-                    var resposta = new Response();
-
-                    var ProdutoJsonString = result.Content.ReadAsStringAsync();
-
-                    resposta = JsonConvert.DeserializeObject<Response>(ProdutoJsonString.Result);
-
-
-                    if (result.IsSuccessStatusCode)
-                    {
-                        
-                        return response.Good(""+ resposta.Mensagem, resposta.Objeto);
-                    }
-                    else
-                    {
-                        return response.Bad(result.StatusCode +" "+resposta.Mensagem);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                return response.Bad("Erro ao gerar lista " + e);
-            }
+            FormMenu Login = new FormMenu();
+            Login.Show();
+            this.Hide();
         }
 
         private void BtnLogar_Click(object sender, EventArgs e)
         {
-            _ = Logar();
+            Logar();
         }
     }
 }
